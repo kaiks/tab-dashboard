@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+<div class="container">
+  <div class="col-md-4">
+    <h1>List Items</h1>
+
+    <table class="table sortable">
+      <thead>
+        <tr>
+          <th scope="col">Url</th>
+          <th scope="col">Read</th>
+          <th scope="col">Read at</th>
+          <th scope="col">Removed</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @list_items.each do |list_item| %>
+          <%= render list_item %>
+        <% end %>
+      </tbody>
+    </table>
+    <%= form_with(model: @new_item) do |f| %>
+        <%= f.text_field :url %>
+        <%= f.submit 'Quick add' %>
+    <% end if @new_item %>
+    <br>
+
+    <%= link_to 'New List Item', new_list_item_path %>
+  </div>
+</div>

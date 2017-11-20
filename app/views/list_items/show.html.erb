@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Url:</strong>
+  <%= @list_item.url %>
+</p>
+
+<p>
+  <strong>Read:</strong>
+  <%= @list_item.read %>
+</p>
+
+<p>
+  <strong>Read at:</strong>
+  <%= @list_item.read_at %>
+</p>
+
+<p>
+  <strong>Removed:</strong>
+  <%= @list_item.removed %>
+</p>
+
+<%= link_to 'Edit', edit_list_item_path(@list_item) %> |
+<%= link_to 'Back', list_items_path %>
