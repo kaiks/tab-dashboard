@@ -7,10 +7,6 @@ RSpec.describe ListItemsController, type: :routing do
       expect(:get => "/list_items").to route_to("list_items#index")
     end
 
-    it "root routes to #dashboard" do
-      expect(:get => "/").to route_to("list_items#dashboard")
-    end
-
     it "routes to #new" do
       expect(:get => "/list_items/new").to route_to("list_items#new")
     end

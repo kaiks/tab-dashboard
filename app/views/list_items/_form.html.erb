@@ -13,7 +13,12 @@
 
   <div class="field">
     <%= form.label :url %>
-    <%= form.text_area :url, id: :list_item_url %>
+    <%= form.text_field :url, id: :list_item_url, size: 80 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_field :description, id: :list_item_description, size: 80 %>
   </div>
 
   <div class="field">

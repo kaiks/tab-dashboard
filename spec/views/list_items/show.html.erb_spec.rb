@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "list_items/show", type: :view do
+RSpec.describe "list_items/show", skip: 'not implemented', type: :view do
   before(:each) do
     @list_item = assign(:list_item, ListItem.create!(
       :url => "MyText",

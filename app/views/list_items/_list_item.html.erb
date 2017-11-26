@@ -1,15 +1,18 @@
 <tr id="id<%= list_item.id %>" class="<%= list_item_row_class(list_item) %>" >
+  <td class="action"><img src="http://www.google.com/s2/favicons?domain_url=<%= list_item.url %>"></td>
   <td><a href="<%= list_item.url %>" target="_blank"><%= list_item.description %></a></td>
-  <td class="read"><%= list_item.read %></td>
-  <td class="read-at"><%= list_item.read_at %></td>
-  <td class="removed"><%= list_item.removed %></td>
-  <td class="mark-read"><%= link_to 'Mark read', mark_read_list_item_path(list_item),
+  <% unless local_assigns.fetch(:dashboard, false) %>
+    <td class="read"><%= list_item.read %></td>
+    <td class="read-at"><%= list_item.read_at %></td>
+    <td class="removed"><%= list_item.removed %></td>
+  <% end %>
+  <td class="mark-read action"><%= link_to '✔', mark_read_list_item_path(list_item),
                   class: "btn badge badge-success badge-pill mark-read",
                   method: :put,
                   remote: true
   %></td>
-  <td><%= link_to 'Edit', edit_list_item_path(list_item) %></td>
-  <td>
+  <td class="action"><%= link_to '📝', edit_list_item_path(list_item)%></td>
+  <td class="action">
     <%= link_to '❌', list_item, method: :delete,
                 data: { confirm: 'Are you sure?' },
                 remote: true,

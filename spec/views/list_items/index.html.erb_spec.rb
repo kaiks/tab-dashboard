@@ -1,15 +1,15 @@
 require 'rails_helper'
 
-RSpec.describe "list_items/index", type: :view do
+RSpec.describe 'list_items/index', skip: 'not implemented', type: :view do
   before(:each) do
     assign(:list_items, [
       ListItem.create!(
-        :url => "MyText",
+        :url => 'MyText',
         :read => false,
         :removed => false
       ),
       ListItem.create!(
-        :url => "MyText",
+        :url => 'MyText',
         :read => false,
         :removed => false
       )

@@ -5,3 +5,21 @@
 .sortable thead {
   cursor: pointer
 }
+
+table.table tbody tr {
+  td {
+    line-height: 85%;
+    font-size: 85%;
+  }
+}
+
+table.table td.action {
+  padding: 0.3rem;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  width: 1em;
+}
+
+label {
+  min-width: 8rem;
+}

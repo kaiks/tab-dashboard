@@ -1,4 +1,5 @@
 class ListItem < ApplicationRecord
+  belongs_to :list
   OLD_DAYS = 1
   VERY_OLD_DAYS = 5
   before_save :fix_url

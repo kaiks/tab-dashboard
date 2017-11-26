@@ -28,6 +28,9 @@ gem 'rails_bootstrap_sortable'
 
 gem 'high_voltage'
 gem 'jquery-rails'
+
+gem 'devise'
+gem 'bcrypt', platforms: :ruby
 group :development do
   gem 'better_errors'
   gem 'rails_apps_pages'
