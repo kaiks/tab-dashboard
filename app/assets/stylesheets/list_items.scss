@@ -10,6 +10,8 @@ table.table tbody tr {
   td {
     line-height: 85%;
     font-size: 85%;
+    word-wrap:break-word;
+    word-break:break-all;
   }
 }
 
