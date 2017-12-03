@@ -1,0 +1,37 @@
+<%= form_with(model: to_do_item, local: true) do |form| %>
+  <% if to_do_item.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(to_do_item.errors.count, "error") %> prohibited this to_do_item from being saved:</h2>
+
+      <ul>
+      <% to_do_item.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :content %>
+    <%= form.text_field :content, id: :to_do_item_content, size: 80 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :done %>
+    <%= form.check_box :done, id: :to_do_item_done %>
+  </div>
+
+  <div class="field">
+    <%= form.label :removed %>
+    <%= form.check_box :removed, id: :to_do_item_removed %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description, id: :to_do_item_description, rows: 4, cols: 80 %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

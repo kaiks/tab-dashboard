@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @to_do_item.user_id %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @to_do_item.content %>
+</p>
+
+<p>
+  <strong>Done:</strong>
+  <%= @to_do_item.done %>
+</p>
+
+<p>
+  <strong>Removed:</strong>
+  <%= @to_do_item.removed %>
+</p>
+
+<p>
+  <strong>Done at:</strong>
+  <%= @to_do_item.done_at %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @to_do_item.description %>
+</p>
+
+<%= link_to 'Edit', edit_to_do_item_path(@to_do_item) %> |
+<%= link_to 'Back', to_do_items_path %>

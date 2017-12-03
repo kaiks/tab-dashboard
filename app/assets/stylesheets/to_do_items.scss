@@ -1,4 +1,4 @@
-// Place all the styles related to the ListItems controller here.
+// Place all the styles related to the ToDoItems controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
@@ -10,13 +10,6 @@ table.table tbody tr {
   td {
     line-height: 85%;
     font-size: 85%;
-  }
-}
-
-table#to-do tbody tr {
-  td {
-    margin: 0;
-    padding: 0.2rem;
   }
 }
 

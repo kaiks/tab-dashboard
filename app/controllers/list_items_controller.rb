@@ -26,7 +26,6 @@ class ListItemsController < ApplicationController
   # POST lists/1/list_items
   # POST lists/1/list_items.json
   def create
-    list_item_params.permit(:list_id).merge!(user_id: current_user)
     @list_item = ListItem.new(list_item_params)
 
     respond_to do |format|
@@ -77,6 +76,17 @@ class ListItemsController < ApplicationController
       format.js
     end
   end
+
+  # PATCH/PUT lists/1/list_items/1/mark_removed
+  def mark_removed
+    @list_item.update(removed: true)
+    respond_to do |format|
+      format.html { redirect_to list_items_url, notice: 'List item was successfully marked removed.' }
+      format.json { head :no_content }
+      format.js
+    end
+  end
+
 
   private
   def set_list_item

@@ -14,4 +14,11 @@ RSpec.describe ListItem, type: :model do
     list_item = create(:list_item, list: @list)
     expect(list_item.description).to eq "Example Domain"
   end
+
+  it 'sets read at date automatically' do
+    list_item = create(:list_item, list: @list)
+    list_item.update(read: true)
+    list_item.reload
+    expect(list_item.read_at.to_date).to eq Date.today
+  end
 end

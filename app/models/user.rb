@@ -5,4 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :lists
+  has_many :to_do_items
+  has_many :pending_to_do_items, -> { where(done: false, removed: false).order('created_at desc') }, class_name: 'ToDoItem'
 end

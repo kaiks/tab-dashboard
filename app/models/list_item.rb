@@ -5,6 +5,7 @@ class ListItem < ApplicationRecord
   before_save :fix_url
   before_save :set_description_placeholder
   after_create :set_description_as_title
+  before_save :set_read_at, if: :read_changed?
   #todo: validity conditions (e.g. read but no read date)
 
   protected
@@ -30,4 +31,9 @@ class ListItem < ApplicationRecord
       puts e
     end
   end
+
+  def set_read_at
+    self.read_at = read? ? DateTime.now : nil
+  end
+
 end

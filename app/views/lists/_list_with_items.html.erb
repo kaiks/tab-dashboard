@@ -1,17 +1,17 @@
 <h4><%= list.title %></h4>
 
-<table class="table sortable">
-  <tbody id="<%= list.id %>">
+<table class="table sortable list no-bottom-margin" id="<%= list.id %>">
+  <tbody>
   <% list.pending_items.limit(10).each do |list_item| %>
       <%= render list_item, dashboard: true %>
   <% end %>
   </tbody>
 </table>
 <%= form_with(model: @new_item) do |f| %>
-    <%= f.text_field :url %>
+    <%= f.text_field :url, class: 'form-control', type: 'text' %>
     <%= f.hidden_field :list_id, value: list.id %>
-    <%= f.submit 'Quick add' %>
+  <br>
+    <%= f.submit 'Quick add', class: 'btn btn-primary' %>
+    <%= link_to 'Full add', new_list_item_path, class: 'btn btn-secondary' %>
 <% end if @new_item %>
 <br>
-
-<%= link_to 'New List Item', new_list_item_path %>

@@ -1,1 +1,1 @@
-$("<%= escape_javascript(render @list_item, dashboard: true) %>").appendTo("tbody#<%= @list_item.list_id %>");
+$("<%= escape_javascript(render @list_item, dashboard: true) %>").appendTo("#<%= @list_item.list_id %>.list tbody");

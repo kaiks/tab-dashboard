@@ -31,6 +31,10 @@ RSpec.describe ListItemsController, type: :routing do
       expect(:put => "/list_items/1/mark_read").to route_to("list_items#mark_read", :id => "1")
     end
 
+    it "routes to #mark_removed via PUT" do
+      expect(:put => "/list_items/1/mark_removed").to route_to("list_items#mark_removed", :id => "1")
+    end
+
     it "routes to #update via PATCH" do
       expect(:patch => "/list_items/1").to route_to("list_items#update", :id => "1")
     end

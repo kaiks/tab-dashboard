@@ -9,8 +9,9 @@
   </head>
 
   <body>
+  <%= javascript_include_tag 'resize' %>
   <p class="notice" id="notice"><%= notice %></p>
-  <p class="alert" id="alert"><%= alert %></p>
+  <p class="notice" id="alert"><%= alert %></p>
 
     <%= yield %>
   </body>

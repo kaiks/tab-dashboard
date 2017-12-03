@@ -1,0 +1,20 @@
+<tr id="todo<%= to_do_item.id %>" class="to-do-item" title="<%= to_do_item.description %>">
+  <td><span title="<%= to_do_item.description %>"><%= to_do_item.content %></span></td>
+  <% unless local_assigns.fetch(:dashboard, false) %>
+    <td class="done"><%= to_do_item.done %></td>
+    <td class="done-at"><%= to_do_item.done_at %></td>
+    <td class="removed"><%= to_do_item.removed %></td>
+  <% end %>
+  <td class="date">
+    <%= humanize_date(to_do_item.created_at) %>
+  </td>
+  <td class="mark-done action"><%= link_to '✔', mark_done_to_do_item_path(to_do_item),
+                  class: "btn badge badge-success badge-pill mark-read",
+                  method: :put,
+                  remote: true
+  %></td>
+  <td class="action"><%= link_to '📝', edit_to_do_item_path(to_do_item)%></td>
+  <td class="action"><%= link_to '❌', mark_removed_to_do_item_path(to_do_item),
+                                 method: :put,
+                                 remote: true %></td>
+</tr>
