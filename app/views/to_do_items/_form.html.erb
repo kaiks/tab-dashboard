@@ -31,6 +31,16 @@
     <%= form.text_area :description, id: :to_do_item_description, rows: 4, cols: 80 %>
   </div>
 
+  <div class="field">
+    <%= form.label :valid_from %>
+    <input type="date" id="to_do_item_valid_from">
+  </div>
+
+  <div class="field">
+    <%= form.label :deadline %>
+    <input type="date" id="to_do_item_deadline">
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>

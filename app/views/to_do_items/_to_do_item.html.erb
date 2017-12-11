@@ -1,4 +1,7 @@
-<tr id="todo<%= to_do_item.id %>" class="to-do-item" title="<%= to_do_item.description %>">
+<tr id="todo<%= to_do_item.id %>"
+    class="to-do-item"
+    title="<%= to_do_item.description %>"
+    style="background-color: <%= urgency_color(to_do_item) %>">
   <td><span title="<%= to_do_item.description %>"><%= to_do_item.content %></span></td>
   <% unless local_assigns.fetch(:dashboard, false) %>
     <td class="done"><%= to_do_item.done %></td>
