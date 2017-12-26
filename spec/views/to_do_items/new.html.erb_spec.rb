@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "to_do_items/new", type: :view do
+RSpec.describe "to_do_items/new", skip: 'not implemented', type: :view do
   before(:each) do
     assign(:to_do_item, ToDoItem.new(
       :user_id => 1,

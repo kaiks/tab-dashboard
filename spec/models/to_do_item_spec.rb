@@ -5,7 +5,7 @@ RSpec.describe ToDoItem, type: :model do
     @user = create(:user)
   end
   it 'can be instantiated' do
-    to_do_item = create(:to_do_item, user: @user)
+    to_do_item = build(:to_do_item, user: @user)
     expect(to_do_item).to be_valid
   end
 
@@ -14,5 +14,15 @@ RSpec.describe ToDoItem, type: :model do
     to_do_item.update(done: true)
     to_do_item.reload
     expect(to_do_item.done_at.to_date).to eq Date.today
+  end
+
+  it 'doesnt allow creating stuff with deadline older than now' do
+    to_do_item = build(:to_do_item, user: @user, deadline: Date.yesterday)
+    expect(to_do_item).not_to be_valid
+  end
+
+  it 'doesnt allow creating stuff with valid_from < deadline' do
+    to_do_item = build(:to_do_item, user: @user, valid_from: Date.today, deadline: Date.today-1)
+    expect(to_do_item).not_to be_valid
   end
 end

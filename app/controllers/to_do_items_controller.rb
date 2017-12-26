@@ -97,7 +97,7 @@ class ToDoItemsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def to_do_item_params
-    params.require(:to_do_item).permit(:content, :done, :removed, :done_at, :description)
+    params.require(:to_do_item).permit(:content, :done, :removed, :done_at, :description, :valid_from, :deadline)
   end
 
   def ensure_secure
