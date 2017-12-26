@@ -3,7 +3,7 @@ git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
   "https://github.com/#{repo_name}.git"
 end
-ruby '2.4.1'
+ruby '~> 2.4.0'
 gem 'rails', '~> 5.1.3.rc2'
 gem 'puma', '~> 3.7'
 gem 'sass-rails', '~> 5.0'
@@ -11,6 +11,9 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
+
+#gem 'bootstrap-datepicker-rails'
+
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'capybara', '~> 2.13'
@@ -30,7 +33,10 @@ gem 'high_voltage'
 gem 'jquery-rails'
 
 gem 'devise'
-gem 'bcrypt', platforms: :ruby
+gem 'bcrypt', platforms: :ruby #https://github.com/codahale/bcrypt-ruby/issues/142
+
+gem 'gon'
+
 group :development do
   gem 'better_errors'
   gem 'rails_apps_pages'

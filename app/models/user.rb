@@ -6,5 +6,7 @@ class User < ApplicationRecord
 
   has_many :lists
   has_many :to_do_items
-  has_many :pending_to_do_items, -> { where(done: false, removed: false).order('created_at desc') }, class_name: 'ToDoItem'
+  has_many :pending_to_do_items, -> { where(done: false, removed: false)
+                                          .where("COALESCE(deadline, '2999-01-01') >= CURRENT_DATE AND valid_from <= CURRENT_DATE")
+                                          .order('created_at desc') }, class_name: 'ToDoItem'
 end

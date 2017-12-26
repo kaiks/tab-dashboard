@@ -1,8 +1,10 @@
 module ToDoItemsHelper
   def urgency_color(to_do_item)
     if to_do_item.deadline.present? && to_do_item.valid_from.present?
-      time_total = to_do_item.deadline.to_i - to_do_item.valid_from.to_i
-      time_remaining = to_do_item.deadline.to_i - DateTime.now.to_i
+      deadline = (DateTime.parse(to_do_item.deadline.to_s) + 1.day - 1.second).to_i
+      valid_from = DateTime.parse(to_do_item.valid_from.to_s).to_i
+      time_total = deadline - valid_from
+      time_remaining = deadline - DateTime.now.to_i
       passed_share = 1.0 - time_remaining.to_f/time_total.to_f
       if passed_share > 0.5
         puts passed_share

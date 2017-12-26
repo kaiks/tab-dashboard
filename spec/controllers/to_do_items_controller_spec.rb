@@ -29,10 +29,10 @@ RSpec.describe ToDoItemsController, type: :controller do
   # This should return the minimal set of attributes required to create a valid
   # ToDoItem. As you add validations to ToDoItem, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) { attributes_for(:to_do_item).merge(user: @user) }
+  let(:valid_attributes) { attributes_for(:to_do_item).merge(user: @user, deadline: Date.parse('2099-12-31')) }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    attributes_for(:to_do_item).merge(user: @user, deadline: Date.parse('2009-12-31'))
   }
 
   # This should return the minimal set of values that should be in the session
@@ -106,6 +106,7 @@ RSpec.describe ToDoItemsController, type: :controller do
         to_do_item.reload
         expect(to_do_item.content).to eq 'do the dishes'
         expect(to_do_item.description).to eq 'at work'
+        expect(to_do_item.deadline).to eq Date.parse('2099-12-31')
       end
 
       it "redirects to the to_do_item" do
@@ -115,7 +116,7 @@ RSpec.describe ToDoItemsController, type: :controller do
       end
     end
 
-    context "with invalid params", skip: 'no validations yet' do
+    context "with invalid params" do
       it "returns a success response (i.e. to display the 'edit' template)" do
         to_do_item = ToDoItem.create! valid_attributes
         put :update, params: {id: to_do_item.to_param, to_do_item: invalid_attributes}, session: valid_session

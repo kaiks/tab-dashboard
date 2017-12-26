@@ -1,4 +1,5 @@
-<%= form_with(model: to_do_item, local: true) do |form| %>
+<% async ||= false %>
+<%= form_with(model: to_do_item, local: true, id: 'todo_form', data: {remote: async.to_s}) do |form| %>
   <% if to_do_item.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(to_do_item.errors.count, "error") %> prohibited this to_do_item from being saved:</h2>
@@ -10,38 +11,45 @@
       </ul>
     </div>
   <% end %>
+  <% if async %>
+    <input name="_method" value="patch" type="hidden">
+  <% end %>
 
-  <div class="field">
-    <%= form.label :content %>
-    <%= form.text_field :content, id: :to_do_item_content, size: 80 %>
+  <div class="form-group">
+    <%= form.label :content, for: :to_do_item_content %>
+    <%= form.text_field :content, id: :to_do_item_content, size: 80, class: 'form-control' %>
   </div>
 
-  <div class="field">
-    <%= form.label :done %>
-    <%= form.check_box :done, id: :to_do_item_done %>
+  <div class="form-group">
+    <div class="form-check">
+      <%= form.label :done, class: 'form-check-label', for: :to_do_item_done %>
+      <%= form.check_box :done, id: :to_do_item_done, class: 'form-check-input' %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :removed %>
-    <%= form.check_box :removed, id: :to_do_item_removed %>
+  <div class="form-group">
+    <div class="form-check">
+    <%= form.label :removed, class: 'form-check-label' %>
+    <%= form.check_box :removed, id: :to_do_item_removed, class: 'form-check-input' %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description, id: :to_do_item_description, rows: 4, cols: 80 %>
+  <div class="form-group">
+    <%= form.label :description, for: :to_do_item_description %>
+    <%= form.text_area :description, id: :to_do_item_description, rows: 4, cols: 80, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :valid_from %>
-    <input type="date" id="to_do_item_valid_from">
+    <input type="date" id="to_do_item_valid_from" name="to_do_item[valid_from]" value="<%= to_do_item.valid_from %>">
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :deadline %>
-    <input type="date" id="to_do_item_deadline">
+    <input type="date" id="to_do_item_deadline" name="to_do_item[deadline]" value="<%= to_do_item.deadline %>">
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit 'Update', class: 'btn btn-primary' %>
   </div>
 <% end %>

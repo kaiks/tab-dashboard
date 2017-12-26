@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "to_do_items/index", type: :view do
+RSpec.describe "to_do_items/index", skip: 'not implemented', type: :view do
   before(:each) do
     assign(:to_do_items, [
       ToDoItem.create!(

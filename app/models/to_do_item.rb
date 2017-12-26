@@ -1,8 +1,8 @@
 class ToDoItem < ApplicationRecord
   belongs_to :user
   before_save :set_done_at, if: :done_changed?
-  before_create :set_valid_from
-  validate :dates_valid?
+  before_validation :set_valid_from
+  validate :dates_validator
 
   #RED = RGB::Color.from_rgb(255, 0, 0)
   #YELLOW = RGB::Color.from_rgb(255, 255, 0)
@@ -13,10 +13,12 @@ class ToDoItem < ApplicationRecord
   end
 
   def set_valid_from
-    self.valid_from ||= DateTime.now
+    persisted? || self.valid_from.present? || self.valid_from = Date.today
   end
 
-  def dates_valid?
-    (self.deadline.nil? || self.valid_from < self.deadline) && self.deadline > DateTime.now
+  def dates_validator
+    if self.deadline.present? && (self.valid_from > self.deadline || self.deadline < Date.today)
+      errors.add(:deadline, 'Deadline should be before valid_from and after now')
+    end
   end
 end

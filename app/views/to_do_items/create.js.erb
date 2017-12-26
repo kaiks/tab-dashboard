@@ -1,1 +1,6 @@
 $("<%= escape_javascript(render @to_do_item, dashboard: true) %>").appendTo("#to-do tbody");
+$( ".todo_edit" ).click(function() {
+    var id = $(this).data("id");
+    fill_form(id);
+});
+gon.todo[<%= @to_do_item.id %>] = <%=raw @to_do_item.to_json %>;

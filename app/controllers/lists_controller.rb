@@ -14,6 +14,8 @@ class ListsController < ApplicationController
     @new_item = ListItem.new
     @new_to_do_item = ToDoItem.new
 
+    to_do_item_array = @to_do_items.each_with_object([]) { |el, obj| obj[el.id] = el }
+    gon.todo = to_do_item_array
     render 'lists/dashboard'
   end
 

@@ -2,7 +2,7 @@
     class="to-do-item"
     title="<%= to_do_item.description %>"
     style="background-color: <%= urgency_color(to_do_item) %>">
-  <td><span title="<%= to_do_item.description %>"><%= to_do_item.content %></span></td>
+  <td><span title="<%= to_do_item.description %>" class="todo-content"><%= to_do_item.content %></span></td>
   <% unless local_assigns.fetch(:dashboard, false) %>
     <td class="done"><%= to_do_item.done %></td>
     <td class="done-at"><%= to_do_item.done_at %></td>
@@ -16,7 +16,11 @@
                   method: :put,
                   remote: true
   %></td>
-  <td class="action"><%= link_to '📝', edit_to_do_item_path(to_do_item)%></td>
+  <!--td class="action"><%= link_to '📝', edit_to_do_item_path(to_do_item)%></td -->
+  <td class="action" id="qpa">
+    <%= button_tag '📝', type: 'button', class: 'btn btn-link action todo_edit small-line',
+                   data: {toggle: 'modal', target: '#exampleModal', whatever: "@getbootstrap", id: to_do_item.id} %>
+  </td>
   <td class="action"><%= link_to '❌', mark_removed_to_do_item_path(to_do_item),
                                  method: :put,
                                  remote: true %></td>
