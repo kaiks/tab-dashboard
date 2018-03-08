@@ -1,0 +1,2 @@
+class KnowledgeRepository < ApplicationRecord
+end

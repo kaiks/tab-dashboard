@@ -29,6 +29,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :knowledge_repositories
+
   devise_for :users
   root to: 'lists#dashboard'
 end

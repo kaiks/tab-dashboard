@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171226111228) do
+ActiveRecord::Schema.define(version: 20180304113900) do
+
+  create_table "knowledge_repositories", force: :cascade do |t|
+    t.string "name"
+    t.string "url"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "list_items", force: :cascade do |t|
     t.text "url"

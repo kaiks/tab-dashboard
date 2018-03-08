@@ -1,0 +1,32 @@
+<%= form_with(model: knowledge_repository, local: true) do |form| %>
+  <% if knowledge_repository.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(knowledge_repository.errors.count, "error") %> prohibited this knowledge_repository from being saved:</h2>
+
+      <ul>
+      <% knowledge_repository.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :list_item_name, size: 80 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :url %>
+    <%= form.text_field :url, id: :list_item_url, size: 80 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_field :description, id: :list_item_description, size: 360 %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

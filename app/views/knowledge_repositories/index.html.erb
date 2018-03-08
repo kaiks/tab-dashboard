@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Knowledge Repositories</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="5"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @knowledge_repositories.each do |knowledge_repository| %>
+      <tr>
+        <td><%= knowledge_repository.name %> </td>
+        <td><%= knowledge_repository.url %> </td>
+        <td><%= link_to 'Show', knowledge_repository %></td>
+        <td><%= link_to 'Edit', edit_knowledge_repository_path(knowledge_repository) %></td>
+        <td><%= link_to 'Destroy', knowledge_repository, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Knowledge Repository', new_knowledge_repository_path %>

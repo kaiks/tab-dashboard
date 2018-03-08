@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :list do
     title "MyString"
     user_id 1
