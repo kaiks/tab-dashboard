@@ -1,6 +1,7 @@
 class KnowledgeRepository < ApplicationRecord
-  protected
+  before_save :fix_url
 
+  protected
   def fix_url
     unless self.url[/\Ahttp:\/\//] || self.url[/\Ahttps:\/\//]
       self.url = "http://#{self.url}"
