@@ -32,3 +32,8 @@ table.table td.action {
 label {
   min-width: 8rem;
 }
+
+.no-side-padding {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
