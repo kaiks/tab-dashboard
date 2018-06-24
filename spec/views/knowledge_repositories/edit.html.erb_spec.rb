@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "knowledge_repositories/edit", type: :view do
+RSpec.describe "knowledge_repositories/edit", skip: 'not implemented', type: :view do
   before(:each) do
     @knowledge_repository = assign(:knowledge_repository, KnowledgeRepository.create!())
   end

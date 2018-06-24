@@ -44,7 +44,7 @@ RSpec.describe ToDoItemsController, type: :controller do
     it "returns a success response" do
       to_do_item = create(:to_do_item, user: @user)
       get :index, params: {}, session: valid_session
-      expect(response).to be_success
+      expect(response).to be_successful
     end
   end
 
@@ -52,14 +52,14 @@ RSpec.describe ToDoItemsController, type: :controller do
     it "returns a success response" do
       to_do_item = create(:to_do_item, user: @user)
       get :show, params: {id: to_do_item.to_param}, session: valid_session
-      expect(response).to be_success
+      expect(response).to be_successful
     end
   end
 
   describe "GET #new" do
     it "returns a success response" do
       get :new, params: {}, session: valid_session
-      expect(response).to be_success
+      expect(response).to be_successful
     end
   end
 
@@ -67,7 +67,7 @@ RSpec.describe ToDoItemsController, type: :controller do
     it "returns a success response" do
       to_do_item = create(:to_do_item, user: @user)
       get :edit, params: {id: to_do_item.to_param}, session: valid_session
-      expect(response).to be_success
+      expect(response).to be_successful
     end
   end
 
@@ -88,7 +88,7 @@ RSpec.describe ToDoItemsController, type: :controller do
     context "with invalid params" do
       it "returns a success response (i.e. to display the 'new' template)" do
         post :create, params: {to_do_item: invalid_attributes}, session: valid_session
-        expect(response).to be_success
+        expect(response).to be_successful
       end
     end
   end
@@ -120,7 +120,7 @@ RSpec.describe ToDoItemsController, type: :controller do
       it "returns a success response (i.e. to display the 'edit' template)" do
         to_do_item = ToDoItem.create! valid_attributes
         put :update, params: {id: to_do_item.to_param, to_do_item: invalid_attributes}, session: valid_session
-        expect(response).to be_success
+        expect(response).to be_successful
       end
     end
   end

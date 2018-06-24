@@ -41,7 +41,7 @@ RSpec.describe ListsController, type: :controller do
     it "returns a success response" do
       list = List.create! valid_attributes
       get :index, params: {}, session: valid_session
-      expect(response).to be_success
+      expect(response).to be_successful
     end
   end
 
@@ -49,14 +49,14 @@ RSpec.describe ListsController, type: :controller do
     it "returns a success response" do
       list = List.create! valid_attributes
       get :show, params: {id: list.to_param}, session: valid_session
-      expect(response).to be_success
+      expect(response).to be_successful
     end
   end
 
   describe "GET #new" do
     it "returns a success response" do
       get :new, params: {}, session: valid_session
-      expect(response).to be_success
+      expect(response).to be_successful
     end
   end
 
@@ -64,7 +64,7 @@ RSpec.describe ListsController, type: :controller do
     it "returns a success response" do
       list = List.create! valid_attributes
       get :edit, params: {id: list.to_param}, session: valid_session
-      expect(response).to be_success
+      expect(response).to be_successful
     end
   end
 
@@ -85,7 +85,7 @@ RSpec.describe ListsController, type: :controller do
     context "with invalid params", skip: 'no validity checks' do
       it "returns a success response (i.e. to display the 'new' template)" do
         post :create, params: {list: invalid_attributes}, session: valid_session
-        expect(response).to be_success
+        expect(response).to be_successful
       end
     end
   end
@@ -114,7 +114,7 @@ RSpec.describe ListsController, type: :controller do
       it "returns a success response (i.e. to display the 'edit' template)" do
         list = List.create! valid_attributes
         put :update, params: {id: list.to_param, list: invalid_attributes}, session: valid_session
-        expect(response).to be_success
+        expect(response).to be_successful
       end
     end
   end
