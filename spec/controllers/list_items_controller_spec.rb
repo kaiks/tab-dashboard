@@ -102,11 +102,21 @@ RSpec.describe ListItemsController, type: :controller do
 
   describe "PUT #mark_removed" do
     it 'marks an item as removed' do
-      list_item = create(:list_item, list: list)
+      list_item = create(:list_item, list: list, removed: false)
       put :mark_removed, params: { id: list_item.to_param, list_item: new_attributes }, session: valid_session
       expect(response).to redirect_to(list_items_url)
       list_item.reload
       expect(list_item.removed).to eq true
+    end
+  end
+
+  describe "PUT #mark_read" do
+    it 'marks an item as read' do
+      list_item = create(:list_item, list: list, read: false)
+      put :mark_read, params: { id: list_item.to_param, list_item: new_attributes }, session: valid_session
+      expect(response).to redirect_to(list_items_url)
+      list_item.reload
+      expect(list_item.read).to eq true
     end
   end
 
