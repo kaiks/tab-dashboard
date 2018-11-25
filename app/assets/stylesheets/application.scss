@@ -40,6 +40,15 @@ a:hover {
   line-height: 1rem;
 }
 
+td {
+  width: auto;
+}
+
+td.min {
+  width: 1%;
+  white-space: nowrap;
+}
+
 .date {
   width: 10em;
 }
