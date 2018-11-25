@@ -15,10 +15,6 @@ Rails.application.routes.draw do
         put :mark_removed
       end
     end
-
-    collection do
-      get :dashboard
-    end
   end
 
 
@@ -32,5 +28,5 @@ Rails.application.routes.draw do
   resources :knowledge_repositories
 
   devise_for :users
-  root to: 'lists#dashboard'
+  root to: 'dashboard#show'
 end

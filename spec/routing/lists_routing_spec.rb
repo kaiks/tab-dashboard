@@ -3,10 +3,6 @@ require "rails_helper"
 RSpec.describe ListsController, type: :routing do
   describe "routing" do
 
-    it "root routes to #dashboard" do
-      expect(:get => "/").to route_to("lists#dashboard")
-    end
-
     it "routes to #index" do
       expect(:get => "/lists").to route_to("lists#index")
     end
