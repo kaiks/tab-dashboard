@@ -8,17 +8,6 @@ class ListsController < ApplicationController
     @lists = current_user.lists.all
   end
 
-  def dashboard
-    @lists = List.where(user: current_user).includes(:pending_items).order(:position, :created_at)
-    @to_do_items = current_user.pending_to_do_items.all
-    @new_item = ListItem.new
-    @new_to_do_item = ToDoItem.new
-
-    to_do_item_array = @to_do_items.each_with_object([]) { |el, obj| obj[el.id] = el }
-    gon.todo = to_do_item_array
-    render 'lists/dashboard'
-  end
-
   # GET /lists/1
   # GET /lists/1.json
   def show

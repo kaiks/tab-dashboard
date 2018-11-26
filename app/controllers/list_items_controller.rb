@@ -7,6 +7,9 @@ class ListItemsController < ApplicationController
   # GET lists/1/list_items.json
   def index
     @list_items = ListItem.where(list: current_user.lists)
+    if params[:list_id].present?
+      @list_items = @list_items.where(list_id: params[:list_id])
+    end
   end
 
   # GET lists/1/list_items/1
