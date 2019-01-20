@@ -19,7 +19,7 @@
   <!--td class="action"><%= link_to '📝', edit_to_do_item_path(to_do_item)%></td -->
   <td class="action" id="qpa">
     <%= button_tag '📝', type: 'button', class: 'btn btn-link action todo_edit small-line',
-                   data: {toggle: 'modal', target: '#exampleModal', whatever: "@getbootstrap", id: to_do_item.id} %>
+                   data: {toggle: 'modal', target: '#to_do_modal', whatever: "@getbootstrap", id: to_do_item.id} %>
   </td>
   <td class="action"><%= link_to '❌', mark_removed_to_do_item_path(to_do_item),
                                  method: :put,
