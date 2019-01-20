@@ -23,10 +23,3 @@
 <%= render 'components/popup_form', name: 'to_do_modal' do %>
   <% render partial: 'to_do_items/form', locals: { to_do_item: ToDoItem.new, async: true } %>
 <% end %>
-
-<script>
-  $( ".todo_edit" ).click(function() {
-    var id = $(this).data("id");
-    fill_form("todo_form", gon.todo[id], 'to_do_item');
-  });
-</script>

@@ -11,3 +11,11 @@ function fill_form(form_id, json_obj, obj_name) {
       $('#todo_form input[name="' + obj_name + '['+key+']"]').val(json_obj[key]);
   }
 }
+
+$(document).on('click', '[data-toggle="modal"]', function(event) {
+  var element = event.target;
+  var id = $(element).data("id");
+  var name = $(element).data("class");
+
+  fill_form("todo_form", gon[name][id], name);
+});

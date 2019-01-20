@@ -6,7 +6,7 @@ class DashboardController < ApplicationController
         @new_to_do_item = ToDoItem.new
 
         to_do_item_array = @to_do_items.each_with_object([]) { |el, obj| obj[el.id] = el }
-        gon.todo = to_do_item_array
+        gon.to_do_item = to_do_item_array
         render 'dashboard/show'
     end
 
