@@ -12,7 +12,7 @@ gem 'coffee-rails'
 gem 'turbolinks'
 gem 'jbuilder'
 gem 'bcrypt', platforms: :ruby #https://github.com/codahale/bcrypt-ruby/issues/142
-
+gem 'rinku'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

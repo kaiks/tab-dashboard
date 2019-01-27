@@ -9,6 +9,11 @@ RSpec.describe ToDoItem, type: :model do
     expect(to_do_item).to be_valid
   end
 
+  it 'autolinks content' do
+    to_do_item = create(:to_do_item, user: @user, content: 'ha ha www.google.com')
+    expect(to_do_item.content).to eq "ha ha <a href=\"http://www.google.com\">www.google.com</a>"
+  end
+
   it 'sets done_at date automatically' do
     to_do_item = create(:to_do_item, user: @user)
     to_do_item.update(done: true)
