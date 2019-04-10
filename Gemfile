@@ -16,7 +16,12 @@ gem 'rinku'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  gem 'sqlite3'
+  # unfortunate, but hopefully temporary
+  if RUBY_PLATFORM =~ /win/ || RUBY_PLATFORM =~ /mingw/
+    gem "sqlite3", git: "https://github.com/stomar/sqlite3-ruby", branch: "add-dlfcn", platforms: [:mingw, :x64_mingw]
+  else
+    gem "sqlite3"
+  end
 end
 group :development do
   gem 'web-console', '>= 3.3.0'
