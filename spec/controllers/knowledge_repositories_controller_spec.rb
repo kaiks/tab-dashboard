@@ -6,12 +6,16 @@ RSpec.describe KnowledgeRepositoriesController, type: :controller do
   # KnowledgeRepository. As you add validations to KnowledgeRepository, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    attributes_for(:knowledge_repository)
+    attributes_for(:knowledge_repository).merge(user_id: @user.id)
   }
 
   let(:invalid_attributes) {
     skip("Add a hash of attributes invalid for your model")
   }
+
+  let(:knowledge_repository) { create(:knowledge_repository, user: @user) }
+  let(:other_user) { create(:user) }
+  let(:other_knowledge_repository) { create(:knowledge_repository, user: other_user) }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -20,7 +24,6 @@ RSpec.describe KnowledgeRepositoriesController, type: :controller do
 
   describe "GET #index" do
     it "returns a success response" do
-      knowledge_repository = KnowledgeRepository.create! valid_attributes
       get :index, params: {}, session: valid_session
       expect(response).to be_successful
     end
@@ -28,9 +31,13 @@ RSpec.describe KnowledgeRepositoriesController, type: :controller do
 
   describe "GET #show" do
     it "returns a success response" do
-      knowledge_repository = KnowledgeRepository.create! valid_attributes
       get :show, params: {id: knowledge_repository.to_param}, session: valid_session
       expect(response).to be_successful
+    end
+
+    it "returns an unauthorized response when trying to access other users kr" do
+      get :show, params: {id: other_knowledge_repository.to_param}, session: valid_session
+      expect(response).to be_unauthorized
     end
   end
 
@@ -43,7 +50,6 @@ RSpec.describe KnowledgeRepositoriesController, type: :controller do
 
   describe "GET #edit" do
     it "returns a success response" do
-      knowledge_repository = KnowledgeRepository.create! valid_attributes
       get :edit, params: {id: knowledge_repository.to_param}, session: valid_session
       expect(response).to be_successful
     end
@@ -78,22 +84,24 @@ RSpec.describe KnowledgeRepositoriesController, type: :controller do
       }
 
       it "updates the requested knowledge_repository" do
-        knowledge_repository = KnowledgeRepository.create! valid_attributes
         put :update, params: {id: knowledge_repository.to_param, knowledge_repository: new_attributes}, session: valid_session
         knowledge_repository.reload
         skip("Add assertions for updated state")
       end
 
       it "redirects to the knowledge_repository" do
-        knowledge_repository = KnowledgeRepository.create! valid_attributes
         put :update, params: {id: knowledge_repository.to_param, knowledge_repository: valid_attributes}, session: valid_session
         expect(response).to redirect_to(knowledge_repository)
+      end
+
+      it "returns an unauthorized response when trying to access other users kr" do
+        put :update, params: {id: other_knowledge_repository.to_param, knowledge_repository: new_attributes}, session: valid_session
+        expect(response).to be_unauthorized
       end
     end
 
     context "with invalid params" do
       it "returns a success response (i.e. to display the 'edit' template)" do
-        knowledge_repository = KnowledgeRepository.create! valid_attributes
         put :update, params: {id: knowledge_repository.to_param, knowledge_repository: invalid_attributes}, session: valid_session
         expect(response).to be_successful
       end
@@ -109,7 +117,6 @@ RSpec.describe KnowledgeRepositoriesController, type: :controller do
     end
 
     it "redirects to the knowledge_repositories list" do
-      knowledge_repository = KnowledgeRepository.create! valid_attributes
       delete :destroy, params: {id: knowledge_repository.to_param}, session: valid_session
       expect(response).to redirect_to(knowledge_repositories_url)
     end

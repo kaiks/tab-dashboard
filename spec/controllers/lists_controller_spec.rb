@@ -32,6 +32,10 @@ RSpec.describe ListsController, type: :controller do
     { title: 'blablabla', user_id: @user.id }
   }
 
+  let(:list) { create(:list, user: @user) }
+  let(:other_user) { create(:user) }
+  let(:other_list) { create(:list, user: other_user) }
+
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
   # ListsController. Be sure to keep this updated too.
@@ -39,7 +43,6 @@ RSpec.describe ListsController, type: :controller do
 
   describe "GET #index" do
     it "returns a success response" do
-      list = List.create! valid_attributes
       get :index, params: {}, session: valid_session
       expect(response).to be_successful
     end
@@ -47,9 +50,13 @@ RSpec.describe ListsController, type: :controller do
 
   describe "GET #show" do
     it "returns a success response" do
-      list = List.create! valid_attributes
       get :show, params: {id: list.to_param}, session: valid_session
       expect(response).to be_successful
+    end
+
+    it "returns unauthorized when trying to access other user's list" do
+      get :show, params: {id: other_list.to_param}, session: valid_session
+      expect(response).to be_unauthorized
     end
   end
 
@@ -62,10 +69,14 @@ RSpec.describe ListsController, type: :controller do
 
   describe "GET #edit" do
     it "returns a success response" do
-      list = List.create! valid_attributes
       get :edit, params: {id: list.to_param}, session: valid_session
       expect(response).to be_successful
     end
+
+    it "returns unauthorized when trying to access other user's list" do
+      get :edit, params: {id: other_list.to_param}, session: valid_session
+      expect(response).to be_unauthorized
+    end  
   end
 
   describe "POST #create" do
@@ -97,22 +108,24 @@ RSpec.describe ListsController, type: :controller do
       }
 
       it "updates the requested list" do
-        list = List.create! valid_attributes
         put :update, params: {id: list.to_param, list: new_attributes}, session: valid_session
         list.reload
         skip("Add assertions for updated state")
       end
 
       it "redirects to the list" do
-        list = List.create! valid_attributes
         put :update, params: {id: list.to_param, list: valid_attributes}, session: valid_session
         expect(response).to redirect_to(list)
+      end
+
+      it "returns unauthorized when trying to access other user's list" do
+        put :update, params: {id: other_list.to_param, list: valid_attributes}, session: valid_session
+        expect(response).to be_unauthorized
       end
     end
 
     context "with invalid params", skip: 'no validity checks' do
       it "returns a success response (i.e. to display the 'edit' template)" do
-        list = List.create! valid_attributes
         put :update, params: {id: list.to_param, list: invalid_attributes}, session: valid_session
         expect(response).to be_successful
       end
@@ -121,16 +134,20 @@ RSpec.describe ListsController, type: :controller do
 
   describe "DELETE #destroy" do
     it "destroys the requested list" do
-      list = List.create! valid_attributes
+      list
       expect {
         delete :destroy, params: {id: list.to_param}, session: valid_session
       }.to change(List, :count).by(-1)
     end
 
     it "redirects to the lists list" do
-      list = List.create! valid_attributes
       delete :destroy, params: {id: list.to_param}, session: valid_session
       expect(response).to redirect_to(lists_url)
+    end
+
+    it "returns unauthorized when trying to access other user's list" do
+      delete :destroy, params: {id: other_list.to_param}, session: valid_session
+      expect(response).to be_unauthorized
     end
   end
 

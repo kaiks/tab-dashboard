@@ -1,6 +1,6 @@
 class ListsController < ApplicationController
-  before_action :set_list, only: [:show, :edit, :update, :destroy]
-  before_action :ensure_secure, only: [:edit, :update, :destroy]
+  before_action :set_list, except: [:new, :index, :create]
+  before_action :ensure_secure, except: [:new, :index, :create]
 
   # GET /lists
   # GET /lists.json
@@ -75,6 +75,6 @@ class ListsController < ApplicationController
   end
 
   def ensure_secure
-    render file: "public/401.html", status: :unauthorized unless @list.user_id == current_user.id
+    render file: "public/401.html", status: :unauthorized unless @list&.user_id == current_user.id
   end
 end

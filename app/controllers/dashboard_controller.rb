@@ -1,6 +1,6 @@
 class DashboardController < ApplicationController
     def show
-        @lists = List.where(user: current_user).includes(:pending_items).order(:position, :created_at)
+        @lists = current_user.lists.includes(:pending_items).order(:position, :created_at)
         @to_do_items = current_user.pending_to_do_items.all
         @new_item = ListItem.new
         @new_to_do_item = ToDoItem.new
