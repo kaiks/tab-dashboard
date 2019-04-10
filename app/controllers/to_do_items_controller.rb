@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class ToDoItemsController < ApplicationController
-  before_action :set_to_do_item, only: [:show, :edit, :update, :destroy, :mark_done, :mark_removed]
-  before_action :ensure_secure, except: [:new, :index, :create]
+  before_action :set_to_do_item, only: %i[show edit update destroy mark_done mark_removed]
+  before_action :ensure_secure, except: %i[new index create]
 
   # GET /to_do_items
   # GET /to_do_items.json
@@ -10,8 +12,7 @@ class ToDoItemsController < ApplicationController
 
   # GET /to_do_items/1
   # GET /to_do_items/1.json
-  def show
-  end
+  def show; end
 
   # GET /to_do_items/new
   def new
@@ -19,8 +20,7 @@ class ToDoItemsController < ApplicationController
   end
 
   # GET /to_do_items/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /to_do_items
   # POST /to_do_items.json
@@ -77,7 +77,6 @@ class ToDoItemsController < ApplicationController
     end
   end
 
-
   # DELETE /to_do_items/1
   # DELETE /to_do_items/1.json
   def destroy
@@ -90,6 +89,7 @@ class ToDoItemsController < ApplicationController
   end
 
   private
+
   # Use callbacks to share common setup or constraints between actions.
   def set_to_do_item
     @to_do_item = ToDoItem.find(params[:id])
@@ -101,6 +101,6 @@ class ToDoItemsController < ApplicationController
   end
 
   def ensure_secure
-    render file: "public/401.html", status: :unauthorized unless @to_do_item.user == current_user
+    render file: 'public/401.html', status: :unauthorized unless @to_do_item.user == current_user
   end
 end

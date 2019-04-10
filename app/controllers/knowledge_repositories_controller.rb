@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class KnowledgeRepositoriesController < ApplicationController
-  before_action :set_knowledge_repository, only: [:show, :edit, :update, :destroy]
-  before_action :ensure_secure, except: [:new, :index, :create]
+  before_action :set_knowledge_repository, only: %i[show edit update destroy]
+  before_action :ensure_secure, except: %i[new index create]
 
   # GET /knowledge_repositories
   # GET /knowledge_repositories.json
@@ -10,8 +12,7 @@ class KnowledgeRepositoriesController < ApplicationController
 
   # GET /knowledge_repositories/1
   # GET /knowledge_repositories/1.json
-  def show
-  end
+  def show; end
 
   # GET /knowledge_repositories/new
   def new
@@ -19,8 +20,7 @@ class KnowledgeRepositoriesController < ApplicationController
   end
 
   # GET /knowledge_repositories/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /knowledge_repositories
   # POST /knowledge_repositories.json
@@ -64,17 +64,18 @@ class KnowledgeRepositoriesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_knowledge_repository
-      @knowledge_repository = KnowledgeRepository.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def knowledge_repository_params
-      params.require(:knowledge_repository).permit(:url, :description, :name)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_knowledge_repository
+    @knowledge_repository = KnowledgeRepository.find(params[:id])
+  end
 
-    def ensure_secure
-      render file: "public/401.html", status: :unauthorized unless @knowledge_repository.user_id == current_user.id
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def knowledge_repository_params
+    params.require(:knowledge_repository).permit(:url, :description, :name)
+  end
+
+  def ensure_secure
+    render file: 'public/401.html', status: :unauthorized unless @knowledge_repository.user_id == current_user.id
+  end
 end

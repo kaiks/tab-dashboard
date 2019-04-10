@@ -1,15 +1,17 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe "list_items/show", skip: 'not implemented', type: :view do
+RSpec.describe 'list_items/show', skip: 'not implemented', type: :view do
   before(:each) do
     @list_item = assign(:list_item, ListItem.create!(
-      :url => "MyText",
-      :read => false,
-      :removed => false
-    ))
+                                      url: 'MyText',
+                                      read: false,
+                                      removed: false
+                                    ))
   end
 
-  it "renders attributes in <p>" do
+  it 'renders attributes in <p>' do
     render
     expect(rendered).to match(/MyText/)
     expect(rendered).to match(/false/)

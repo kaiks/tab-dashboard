@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 # Specs in this file have access to a helper object that includes
@@ -30,5 +32,4 @@ RSpec.describe ListItemsHelper, type: :helper do
     list_item = build(:list_item, created_at: Time.now)
     expect(list_item_row_class(list_item)).to eq 'table-none'
   end
-
 end

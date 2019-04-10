@@ -1,14 +1,16 @@
+# frozen_string_literal: true
+
 class ListItemsController < ApplicationController
-  before_action :set_list_item, only: [:show, :edit, :update, :destroy, :mark_read, :mark_removed]
+  before_action :set_list_item, only: %i[show edit update destroy mark_read mark_removed]
   before_action :set_list, only: [:create]
-  before_action :ensure_secure, except: [:new, :index]
+  before_action :ensure_secure, except: %i[new index]
 
   # GET lists/1/list_items
   # GET lists/1/list_items.json
   def index
     @list_items = ListItem
-                    .where(list: current_user.lists)
-                    .order(read: :asc, removed: :asc, created_at: :desc)
+                  .where(list: current_user.lists)
+                  .order(read: :asc, removed: :asc, created_at: :desc)
     if params[:list_id].present?
       @list_items = @list_items.where(list_id: params[:list_id])
     end
@@ -16,8 +18,7 @@ class ListItemsController < ApplicationController
 
   # GET lists/1/list_items/1
   # GET lists/1/list_items/1.json
-  def show
-  end
+  def show; end
 
   # GET lists/1/list_items/new
   def new
@@ -25,8 +26,7 @@ class ListItemsController < ApplicationController
   end
 
   # GET lists/1/list_items/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST lists/1/list_items
   # POST lists/1/list_items.json
@@ -107,6 +107,6 @@ class ListItemsController < ApplicationController
 
   def ensure_secure
     list = @list_item&.list || List.find(params[:list_item][:list_id])
-    render file: "public/401.html", status: :unauthorized unless list.user == current_user
+    render file: 'public/401.html', status: :unauthorized unless list.user == current_user
   end
 end

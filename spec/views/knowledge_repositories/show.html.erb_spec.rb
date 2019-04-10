@@ -1,11 +1,13 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe "knowledge_repositories/show", skip: 'not implemented', type: :view do
+RSpec.describe 'knowledge_repositories/show', skip: 'not implemented', type: :view do
   before(:each) do
-    @knowledge_repository = assign(:knowledge_repository, KnowledgeRepository.create!())
+    @knowledge_repository = assign(:knowledge_repository, KnowledgeRepository.create!)
   end
 
-  it "renders attributes in <p>" do
+  it 'renders attributes in <p>' do
     render
   end
 end

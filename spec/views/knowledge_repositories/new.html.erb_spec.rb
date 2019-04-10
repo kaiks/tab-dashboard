@@ -1,14 +1,16 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe "knowledge_repositories/new", skip: 'not implemented', type: :view do
+RSpec.describe 'knowledge_repositories/new', skip: 'not implemented', type: :view do
   before(:each) do
-    assign(:knowledge_repository, KnowledgeRepository.new())
+    assign(:knowledge_repository, KnowledgeRepository.new)
   end
 
-  it "renders new knowledge_repository form" do
+  it 'renders new knowledge_repository form' do
     render
 
-    assert_select "form[action=?][method=?]", knowledge_repositories_path, "post" do
+    assert_select 'form[action=?][method=?]', knowledge_repositories_path, 'post' do
     end
   end
 end
