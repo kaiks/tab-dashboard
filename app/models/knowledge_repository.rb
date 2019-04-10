@@ -1,5 +1,6 @@
 class KnowledgeRepository < ApplicationRecord
   before_save :fix_url
+  belongs_to :user
 
   protected
   def fix_url
