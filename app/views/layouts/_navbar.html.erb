@@ -5,9 +5,9 @@
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
       <%= link_to 'Home', root_path, class: 'nav-item nav-link' %>
-      <% KnowledgeRepository.all.each do |item| %>
+      <% @knowledge_repositories.each do |item| %>
         <%= link_to item.name, item.url, class: 'nav-item nav-link', title: item.description, target: '_blank' %>
-      <% end if current_user %>
+      <% end %>
     </div>
   </div>
 </nav>
