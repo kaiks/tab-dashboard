@@ -21,9 +21,14 @@ class ListItem < ApplicationRecord
   end
 
   def set_description_as_title
-    self['description'] = open(self['url']).read.scan(%r{<title>(.*?)</title>}).flatten.first
+    self['description'] = 
+      open(self['url'])
+        .read
+        .scan(%r{<title>(.*?)</title>})
+        .flatten
+        .first
     save
-  rescue Exception => e
+  rescue StandardError => e
     Rails.logger.debug "Failed getting title for #{id}: #{url}"
     puts "Failed getting title for #{id}: #{url}"
     puts e

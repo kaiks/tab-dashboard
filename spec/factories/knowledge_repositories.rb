@@ -2,8 +2,10 @@
 
 FactoryBot.define do
   factory :knowledge_repository do
-    name { 'MyString' }
-    url { 'MyString' }
-    description { 'MyText' }
+    name { |n|  "KnowledgeRepository#{n}" }
+    url { "https://www.example.com" }
+    description { |n| "Knowledge Repository #{n} description" }
+
+    user
   end
 end

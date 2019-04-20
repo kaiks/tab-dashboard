@@ -6,6 +6,9 @@ RSpec.describe ToDoItem, type: :model do
   before(:each) do
     @user = create(:user)
   end
+
+  it { should belong_to :user }
+
   it 'can be instantiated' do
     to_do_item = build(:to_do_item, user: @user)
     expect(to_do_item).to be_valid

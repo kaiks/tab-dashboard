@@ -7,6 +7,9 @@ RSpec.describe ListItem, type: :model do
     user = create(:user)
     @list = create(:list, user: user)
   end
+
+  it { should belong_to :list }
+
   it 'adds http to url' do
     list_item = create(:list_item, list: @list)
     expect(list_item.url).to eq 'http://www.example.com'
