@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_10_185910) do
+ActiveRecord::Schema.define(version: 2019_08_11_171002) do
 
   create_table "knowledge_repositories", force: :cascade do |t|
     t.string "name"
@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 2019_04_10_185910) do
     t.integer "position"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "preview_limit", default: 5
   end
 
   create_table "to_do_items", force: :cascade do |t|

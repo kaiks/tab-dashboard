@@ -2,7 +2,7 @@
 
 <table class="table sortable list no-bottom-margin" id="<%= list.id %>">
   <tbody>
-  <% list.pending_items.limit(10).each do |list_item| %>
+  <% list.pending_items.limit(list.preview_limit).each do |list_item| %>
       <%= render list_item, dashboard: true %>
   <% end %>
   </tbody>
