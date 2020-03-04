@@ -5,7 +5,7 @@ git_source(:github) do |repo_name|
 end
 ruby '~> 2.4'
 gem 'rails', '~> 5'
-gem 'puma', '~> 3.11'
+gem 'puma', '~> 3.12'
 gem 'sass-rails'
 gem 'uglifier'
 gem 'coffee-rails'
